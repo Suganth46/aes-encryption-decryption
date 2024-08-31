@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption</title>
+    
+    <style>
+    
+
+        body{
+
+            background-image: url("{{ url_for('static', filename='background_image.jpg') }}");
+            background-repeat: no-repeat;
+ background-repeat: no-repeat;
+background-attachment:fixed;
+background-size: cover;
+}
+nav{
+display: flex;
+margin-top: 0%;
+margin-left: 2%;
+}
+.navbar h1{
+font-size: 30px;
+color: white;
+}
+.navbar ul{
+display: flex;
+justify-content: space-between;
+margin-left: 60%; 
+}
+.navbar li{
+font-size: 20px;
+font-weight: bold;
+font-family: sans-serif;
+font-style: normal;
+padding-top :20px; 
+padding-left: 50px;
+padding-right: 50px;
+color: rgb(255, 255, 255);
+}
+.navbar li::marker{
+color:transparent;
+}
+.navbar li:hover{
+color:rgb(15, 12, 81);
+cursor: pointer;
+}
+.content
+{
+color: white;
+margin-left: 5%;
+margin-right: 50%;
+margin-top: 5%;
+position: relative;
+display: inline-block;
+
+}
+.aes h1{
+font-size: xx-large;
+display: inline;
+}
+.aes h4{
+font-size: x-large;
+display:inline;
+padding-bottom: 5%;
+margin-right: 50%;
+}
+.btn{
+color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);
+border-width: 20%;
+background-color: rgb(16, 26, 95);
+padding: 2%;
+border-radius: 5px;
+margin-top: 2%;
+font-size: large;
+
+display: inline-block;
+text-decoration: none;
+
+}
+.btn:hover{
+color: rgb(0, 0, 0);
+cursor: pointer;
+  background-color: rgb(255, 255, 255);
+
+}
+.content2
+{
+color: white;
+margin-left: 5%;
+margin-right: 20%;
+margin-top: 1%;
+position:relative;
+display: inline-block;
+margin-bottom: 5%;
+
+}
+.aes2 h4{
+font-size: x-large;
+display:inline;
+padding-bottom: 5%;
+margin-right: 0%;
+}
+.aes2 h1{
+font-size: xx-large;
+display: inline;
+}
+.end{
+color: white;
+text-align: center;
+}
+.aes2 li{
+font-size: large;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>AES</h1>
+         <ul>
+             <li >Home</li>
+             <a href="/about" style="text-decoration: none;"><li>About  </li></a>
+             <a href="/contact" style="text-decoration: none;"><li>Contact</li></a>
+        </ul>
+     </nav>        <hr style="color: white;">
+<div class="content">
+   <div class="aes"> <h1>What is Encryption and Decryption?</h1><br>
+    <h4>Encryption is the process of converting normal message (plaintext) into meaningless message (Ciphertext). Whereas Decryption is the process of converting meaningless message (Ciphertext) into its original form (Plaintext). </h4></div>
+ <div class="btnc"  ><a class="btn" href="/app">Encryption with AES</a></div>
+</div>
+ <br><br>   
+ <div class="content2">
+    <div class="aes2"> <h1>What is Cryptography?</h1><br>
+     <h4>Cryptography is a method of protecting information and communications using codes, so that only those for whom the information is intended can read and process it.</h4><br>
+       <h4> In computer science, cryptography refers to secure information and communication techniques derived from mathematical concepts and a set of rule-based calculations called algorithms, to transform messages in ways that are hard to decipher.
+     </h4><br><br>
+    <h4>Why Cryptography is Essential</h4>
+    <ul>
+        <li>Privacy: Ensures personal and sensitive information remains confidential.</li>
+        <li>Integrity: Verifies that data has not been altered in transit.</li>
+        <li>Authentication: Confirms the identity of the parties involved in communication.</li>
+        <li>Non-repudiation: Prevents denial of actions or commitments made.</li>
+    </ul>
+    <h4>Key Concepts in Cryptography</h4>
+    <ul>
+        <li>Encryption & Decryption: Process of converting plaintext to ciphertext and vice versa</li>
+        <li>Symmetric Key Cryptography: Uses a single key for both encryption and decryption.</li>
+        <li>Asymmetric Key Cryptography: Utilizes a pair of keys - public and private - for encryption and decryption.</li>
+        <li>Hash Functions: Converts data into a fixed-size hash value, often used for data integrity checks.</li>
+    </ul>
+    <h4>Stay Informed, Stay Secure</h4>
+    <h3>At our Cryptography Hub, we are committed to providing you with the knowledge and tools to understand and implement cryptographic solutions. Explore our resources to keep your data secure and your communications private.</h3>
+    
+    </div>    
+</div>
+<br>
+<br>
+<hr>
+<h4 class="end">Contact Us: Have questions or need more information? Reach out to our team at contact@aesinfohub.com.</h4>
+<h4 class="end">Follow Us: Stay updated with the latest news and insights by following us on Twitter and LinkedIn.</h4>
+</body>
+</html>

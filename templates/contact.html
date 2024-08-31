@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Contact Us - AES Encryption</title>
+   <style>
+       body {
+           color: white;
+           background-image: url("{{ url_for('static', filename='background_image.jpg') }}");
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           background-size: cover;
+       }
+       nav {
+           display: flex;
+           margin-top: 0%;
+           margin-left: 2%;
+       }
+       .navbar h1 {
+           font-size: 30px;
+           color: white;
+       }
+       .navbar ul {
+           display: flex;
+           justify-content: space-between;
+           margin-left: 60%;
+       }
+       .navbar li {
+           font-size: 20px;
+           font-weight: bold;
+           font-family: sans-serif;
+           font-style: normal;
+           padding-top: 20px;
+           padding-left: 50px;
+           padding-right: 50px;
+           color: rgb(255, 255, 255);
+       }
+       .navbar li::marker {
+           color: transparent;
+       }
+       .navbar li:hover {
+           color: rgb(15, 12, 81);
+           cursor: pointer;
+       }
+       .container {
+           background-color: rgba(0, 0, 0, 0.5);
+           color: white;
+           font-weight: bold;
+           border: 1px solid #f1f1f1;
+           position: sticky;
+           left: 7%;
+           border-radius: 2%;
+           z-index: 2;
+           width: 80%;
+           padding: 20px;
+           margin-left: 50%;
+           margin: 2%;
+       }
+       form {
+           font-size: large;
+       }
+       form input,
+       form textarea {
+           background-color: transparent;
+           border: white solid 1px;
+           border-top: none;
+           border-left: none;
+           border-right: none;
+           width: 30%;
+           color: white;
+       }
+       form textarea {
+           height: 2%;
+       }
+       .btn {
+           color: rgb(0, 0, 0);
+           border-color: rgb(0, 0, 0);
+           border-width: 20%;
+           padding: 1%;
+           border-radius: 10%;
+           margin-top: 2%;
+           font-size: medium;
+           background-color: white;
+           display: inline-block;
+           text-decoration: none;
+       }
+       footer {
+           text-align: center;
+       }
+   </style>
+</head>
+<body>
+   <nav class="navbar">
+      <h1>AES</h1>
+      <ul>
+         <a href="/" style="text-decoration: none;"><li>Home</li></a>
+         <a href="/about" style="text-decoration: none;"><li>About</li></a>
+         <a href="/contact" style="text-decoration: none;"><li>Contact</li></a>
+      </ul>
+   </nav>
+   <hr style="color: white;">
+   <div class="container">
+      <h1>Contact Us</h1>
+      <p>If you have any questions, feedback, or require further information, feel free to get in touch with us. Our team is here to assist you.</p>
+      <div class="contact-details">
+         <div>
+            <h2>Address:</h2>
+            <p>Sri Shakthi Nagar, L & T By - Pass <br>
+                Chinniyampalayam Post, Coimbatore - 62.</p>
+         </div>
+         <div>
+            <h2>Phone:</h2>
+            <p>9787638242</p>
+         </div>
+         <div>
+            <h2>Email:</h2>
+            <p><a href="mailto:contact@aesinfohub.com">contact@aesinfohub.com</a></p>
+         </div>
+      </div>
+      <hr>
+      <h2>Send Us a Message</h2>
+      <form action="app.py" method="post">
+         <label for="name">Name:</label>
+         <input type="text" id="name" name="name" required><br><br>
+         <label for="email">Email:</label>
+         <input type="email" id="email" name="email" required><br><br>
+         <label for="subject">Subject:</label>
+         <input type="text" id="subject" name="subject"><br><br>
+         <label for="message">Message:</label>
+         <textarea id="message" name="message" rows="5" required></textarea><br><br>
+         <button type="submit" value="submit" class="btn">Send Message</button>
+      </form>
+   </div>
+   <hr>
+   <footer>
+      <p>Contact Us: <a href="mailto:contact@aesinfohub.com">contact@aesinfohub.com</a></p>
+      <p>Follow Us: <a href="https://twitter.com/aesinfohub">Twitter</a> | <a href="https://linkedin.com/company/aesinfohub">LinkedIn</a></p>
+   </footer>
+</body>
+</html>

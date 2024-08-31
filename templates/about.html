@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us-AES Encryption</title>
+    <style>
+        body {
+            color: white;
+
+            background-image: url("{{ url_for('static', filename='background_image.jpg') }}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        nav {
+            display: flex;
+            margin-top: 0%;
+            margin-left: 2%;
+        }
+
+        .navbar h1 {
+            font-size: 30px;
+            color: white;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 60%;
+        }
+
+        .navbar li {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-style: normal;
+            padding-top: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+
+            color: rgb(255, 255, 255);
+        }
+
+        .navbar li::marker {
+            color: transparent;
+        }
+
+        .navbar li:hover {
+            color: rgb(15, 12, 81);
+            cursor: pointer;
+        }
+
+        .content {
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black w/opacity/see-through */
+            color: white;
+            font-weight: bold;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            left: 7%;
+            border-radius: 5%;
+            /* 
+    transform: translate(-50%, -50%); */
+            z-index: 2;
+            width: 80%;
+            padding: 20px;
+            margin-left: 50%;
+            margin: 2%;
+            /*  text-align: center; */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1>AES</h1>
+        <ul>
+            <a href="/" style="text-decoration: none; ">
+                <li>Home</li>
+            </a>
+            <li>About </li>
+            <a href="/contact" style="text-decoration: none;">
+                <li>Contact</li>
+            </a>
+        </ul>
+    </nav>
+    <hr style="color: white;">
+    <br />
+    <div class="content">
+        <h1>About Our Webpage</h1>
+        <br>
+        <h3>Welcome to our Advanced Encryption Standard (AES) Information Hub! Our webpage is designed to provide you
+            with comprehensive knowledge about AES, its functionality, and its applications in a user-friendly and
+            engaging manner. Here's an overview of what you can find and do on our page:</h3>
+        <br>
+        <h2>AES Encryption and Decryption Section</h2>
+        <h4>This interactive section allows you to experience AES encryption and decryption firsthand:</h4>
+        <ul>
+            <li>Data to Encrypt: Input the text you want to encrypt.</li>
+            <li>Password: Provide a password to use for the encryption process.</li>
+            <li>Encrypted Value: See the encrypted result.</li>
+            <li>Decrypted Value: Decrypt the encrypted text back to its original form using the same password.</li>
+        </ul>
+        <h4>Buttons labeled "Encrypt" and "Decrypt" let you perform these actions directly on the page, demonstrating
+            the power of AES in real-time.</h4>
+        <br>
+        <h2>Informative Content
+        </h2>
+        <h4>We provide detailed information about AES, including:</h4>
+        <ul>
+            <li>Introduction to AES: An overview of AES, its origin, and why it is a robust encryption standard.</li>
+            <li>Points to Remember: Key features of AES, such as block size and key sizes.</li>
+            <li>How AES Works: An explanation of the substitution-permutation network principle that AES relies on.</li>
+        </ul>
+
+        <h1>User Experience</h1>
+        <h4>Our webpage is designed to be:</h4>
+        <br>
+        <ul>
+            <li>Interactive: Allowing you to encrypt and decrypt text to understand AES better.</li>
+            <li>Informative: Providing essential information about AES in a clear and concise manner.</li>
+            <li>User-Friendly: Easy navigation and well-structured content to enhance your learning experience.</li>
+        </ul>
+        <h4>Thank you for visiting our AES Information Hub! We hope you find this resource valuable and informative.
+            Feel free to explore and reach out to us if you have any questions or need further information.</h4>
+    </div>
+</body>
+
+</html>

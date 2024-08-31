@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption/Decryption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-image: url("{{ url_for('static', filename='background_image.jpg') }}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        nav {
+            display: flex;
+            margin-top: 0%;
+            margin-left: 2%;
+        }
+        .navbar h1 {
+            font-size: 30px;
+            color: white;
+        }
+        .navbar ul {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 60%;
+        }
+        .navbar li {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-style: normal;
+            padding-top: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+            color: rgb(255, 255, 255);
+        }
+        .navbar li::marker {
+            color: transparent;
+        }
+        .navbar li:hover {
+            color: rgb(15, 12, 81);
+            cursor: pointer;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black w/opacity/see-through */
+            color: white;
+            font-weight: bold;
+            border: 1px solid #f1f1f1;
+            position: absolute;
+            left: 25%;
+            border-radius: 5%;
+            /* 
+    transform: translate(-50%, -50%); */
+            z-index: 2;
+            width: 80%;
+            padding: 20px;
+            margin-left: 50%;
+            margin: 2%;
+            /*  text-align: center; */
+        }
+        textarea,
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: rgb(15, 12, 81);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffffff;
+            color: black;
+        }
+        .copy-button {
+            background-color: rgb(15, 12, 81);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 10px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+            width: 20%;
+            display: inline-block;
+        }
+        .copied-message {
+            display: inline-block;
+            margin-left: 10px;
+            color: rgb(15, 12, 81);
+            font-size: 14px;
+        }
+        .copy-button:hover {
+            background-color: #ffffff;
+            color: black;
+        }
+        p {
+            font-size: 16px;
+            word-wrap: break-word;
+        }
+        .result {
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .result span {
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .content2 {
+            color: white;
+            margin-left: 3%;
+            margin-right: 20%;
+            margin-top: 3%;
+            position: absolute;
+            top: 180%;
+            display: inline-block;
+        }
+        .aes2 h1 {
+            font-size: xx-large;
+            display: inline-block;
+        }
+        .aes2 h4 {
+            font-size: x-large;
+            display: inline-block;
+            padding-bottom: 5%;
+            margin-right: 50%;
+            width: 100%;
+        }
+        .aes2 li {
+            font-size: large;
+        }
+        .end {
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>AES</h1>
+        <ul>
+            <li>Home</li>
+            <a href="/about" style="text-decoration: none;">
+                <li>About </li>
+            </a>
+            <a href="/contact" style="text-decoration: none;">
+                <li>Contact</li>
+            </a>
+        </ul>
+    </nav>
+    <hr style="color: white;">
+    <div class="container">
+        <h1>AES Encryption/Decryption</h1>
+        <div>
+            <h2>Encrypt</h2>
+            <input type="number" id="key_size" placeholder="Enter key size (128, 192, or 256)">
+            <input type="number" id="duration" placeholder="Key duration in minutes">
+            <textarea id="plaintext" placeholder="Enter plaintext"></textarea>
+            <button onclick="encrypt()">Encrypt</button>
+            <div class="result">
+                <p>Ciphertext: <span id="ciphertext"></span> <button class="copy-button"
+                        onclick="copyToClipboard('ciphertext')">Copy</button> <span id="copyCiphertextMessage"
+                        class="copied-message"></span></p>
+                <p>Encryption Key: <span id="encryption_key"></span> <button class="copy-button"
+                        onclick="copyToClipboard('encryption_key')">Copy</button> <span id="copyEncryptionKeyMessage"
+                        class="copied-message"></span></p>
+                <p>Encryption Key Expires in: <span id="expiry_time"></span></p>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <h2>Decrypt</h2>
+            <input type="text" id="decryption_key" placeholder="Enter decryption key">
+            <textarea id="ciphertext_input" placeholder="Enter ciphertext"></textarea>
+            <button onclick="decrypt()">Decrypt</button>
+            <div class="result">
+                <p>Plaintext: <span id="plaintext_output"></span></p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="content2">
+        <div class="aes2">
+            <h1>What is Advanced Encryption Standard (AES)?</h1><br>
+            <h4>Advanced Encryption Standard (AES) is a specification for the encryption of electronic data established
+                by the U.S National Institute of Standards and Technology (NIST) in 2001. AES is widely used today as it
+                is a much stronger than DES and triple DES despite being harder to implement.</h4>
+            <h2>Points to remember</h2>
+            <ul>
+                <li>AES is a block cipher.</li>
+                <li>The key size can be 128/192/256 bits.</li>
+                <li>Encrypts data in blocks of 128 bits each.</li>
+            </ul>
+            <br>
+            <h2>That means it takes 128 bits as input and outputs 128 bits of encrypted cipher text as output. AES
+                relies on substitution-permutation network principle which means it is performed using a series of
+                linked operations which involves replacing and shuffling of the input data.</h2>
+        </div>
+        <br>
+        <br>
+        <h4 class="end">Contact Us: Have questions or need more information? Reach out to our team at
+            contact@aesinfohub.com.</h4>
+        <h4 class="end">Follow Us: Stay updated with the latest news and insights by following us on Twitter and
+            LinkedIn.</h4>
+    </div>
+    <script>
+        async function encrypt() {
+            const keySize = document.getElementById('key_size').value.trim();
+            const duration = document.getElementById('duration').value.trim();
+            const plainText = document.getElementById('plaintext').value.trim();
+
+            if (!keySize || (keySize !== '128' && keySize !== '192' && keySize !== '256')) {
+                alert("Please enter a valid key size (128, 192, or 256)");
+                return;
+            }
+
+            const response = await fetch('/encrypt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ key_size: parseInt(keySize), plain_text: plainText, duration: parseInt(duration) })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('ciphertext').innerText = data.ciphertext;
+                document.getElementById('encryption_key').innerText = data.key;
+                if (data.expiry_time) {
+                    const expiry = new Date(data.expiry_time * 1000);
+                    document.getElementById('expiry_time').innerText = expiry.toLocaleString();
+                } else {
+                    document.getElementById('expiry_time').innerText = "Never Expires";
+                }
+            } else {
+                alert(data.error);
+            }
+        }
+
+        async function decrypt() {
+            const decryptionKey = document.getElementById('decryption_key').value.trim();
+            const ciphertext = document.getElementById('ciphertext_input').value.trim();
+
+            const response = await fetch('/decrypt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ key: decryptionKey, ciphertext: ciphertext })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('plaintext_output').innerText = data.plaintext;
+            } else {
+                alert(data.error);
+            }
+        }
+
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const messageElementId = `copy${elementId.replace('_', '').replace('-', '')}Message`;
+                document.getElementById(messageElementId).innerText = 'Copied!';
+                setTimeout(() => {
+                    document.getElementById(messageElementId).innerText = 'copied';
+                }, 2000); // Clear message after 2 seconds
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
